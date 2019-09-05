@@ -7,46 +7,66 @@
 <body>
 <fieldset>
     <legend>Rectangle</legend>
-    Area:<p id ='txtArea'> </p>
-    Perimeter:<p id ='txtPerimeter'> </p>
+    <input type="text" id="txtLength">
+    <input type="text" id="txtWidth">
+    <input type="button" value="Click" onclick="doRectangle()">
 </fieldset>
-<canvas id="myCanvas" width="400" height="200" style="border:1px solid #d3d3d3;"></canvas>
+<div id="result">
+    <table>
+        <tr>
+            <td>Chu vi: <label id="circum"></label></td>
+        </tr>
+        <tr>
+            <td>Diện tích: <label id="area"></label></td>
+        </tr>
+        <tr>
+            <td>Hình chữ nhật by Canvas</td>
 
+        </tr>
+        <tr>
+            <td>
+                <canvas id="myCanvas" width="400" height="200" style="border:1px solid #d3d3d3;"></canvas>
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
+<script src="classRectangle.js"></script>
 <script>
-    let inputLength = parseInt(prompt("Enter the length of the rectangle: "));
-    let inputWidth = parseInt(prompt("Enter the width of the rectangle: "));
-    let Rectangle = function (length, width) {
-        this.length = length;
-        this.width= width;
-        this.getLength = function () {
-            return this.length;
-        };
-        this.getWidth = function () {
-            return this.width;
-        };
-        this.getArea = function () {
-            return length * width;
-        };
-        this.getPerimeter = function () {
-            return (length + width) * 2
-        }
-    };
-    function doRectangle(){
-        let rectangle = new Rectangle(inputLength,inputWidth);
-        let length = rectangle.getLength();
-        let width = rectangle.getWidth();
+    // let Rectangle = function (length, width) {
+    //     this.length = length;
+    //     this.width= width;
+    //     this.getLength = function () {
+    //         return this.length;
+    //     };
+    //     this.getWidth = function () {
+    //         return this.width;
+    //     };
+    //     this.getArea = function () {
+    //         return length * width;
+    //     };
+    //     this.getCircum = function () {
+    //         return (length + width) * 2
+    //     }
+    // };
+    function doRectangle() {
+        let inputLength = parseInt(document.getElementById("txtLength").value);
+        let inputWidth = parseInt(document.getElementById("txtWidth").value);
+        let rectangle = new Rectangle(inputLength, inputWidth);
+        var length = rectangle.getLength();
+        var width = rectangle.getWidth();
+        let circum = rectangle.getCircum();
         let area = rectangle.getArea();
-        let perimeter = rectangle.getPerimeter();
+        document.getElementById("circum").innerHTML = circum;
+        document.getElementById("area").innerHTML = area;
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         ctx.beginPath();
-        ctx.rect(200,100,length,width);
+        ctx.rect(200, 100, length, width);
         ctx.stroke();
-        document.getElementById("txtArea").innerHTML = area;
-        document.getElementById("txtPerimeter").innerHTML = perimeter;
     }
-    doRectangle();
+
 
 </script>
+
 </html>
