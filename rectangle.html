@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rectangle</title>
+</head>
+<body>
+<fieldset>
+    <legend>Rectangle</legend>
+    Area:<p id ='txtArea'> </p>
+    Perimeter:<p id ='txtPerimeter'> </p>
+</fieldset>
+<canvas id="myCanvas" width="400" height="200" style="border:1px solid #d3d3d3;"></canvas>
+
+</body>
+<script>
+    let inputLength = parseInt(prompt("Enter the length of the rectangle: "));
+    let inputWidth = parseInt(prompt("Enter the width of the rectangle: "));
+    let Rectangle = function (length, width) {
+        this.length = length;
+        this.width= width;
+        this.getLength = function () {
+            return this.length;
+        };
+        this.getWidth = function () {
+            return this.width;
+        };
+        this.getArea = function () {
+            return length * width;
+        };
+        this.getPerimeter = function () {
+            return (length + width) * 2
+        }
+    };
+    function doRectangle(){
+        let rectangle = new Rectangle(inputLength,inputWidth);
+        let length = rectangle.getLength();
+        let width = rectangle.getWidth();
+        let area = rectangle.getArea();
+        let perimeter = rectangle.getPerimeter();
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.rect(200,100,length,width);
+        ctx.stroke();
+        document.getElementById("txtArea").innerHTML = area;
+        document.getElementById("txtPerimeter").innerHTML = perimeter;
+    }
+    doRectangle();
+
+</script>
+</html>
